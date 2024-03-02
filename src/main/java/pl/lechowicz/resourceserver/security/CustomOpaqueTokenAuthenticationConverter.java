@@ -24,18 +24,18 @@ public class CustomOpaqueTokenAuthenticationConverter implements OpaqueTokenAuth
 
         // authorities (OPTIONAL)
         Collection<? extends GrantedAuthority> authorities = AuthorityUtils.NO_AUTHORITIES;
-        if (authenticatedPrincipal.getAttributes().containsKey("authorities")) {
+        if (attributes.containsKey("authorities")) {
             authorities =
                     ((List<String>)authenticatedPrincipal.getAttributes().get("authorities")).stream()
-                            .map(auth -> new SimpleGrantedAuthority(auth))
+                            .map(SimpleGrantedAuthority::new)
                             .collect(Collectors.toUnmodifiableSet());
         }
 
         // username (OPTIONAL)
         String username = null;
         if (attributes.containsKey("username")
-                && StringUtils.hasText((String) attributes.get("username"))
-        ) {
+                && StringUtils.hasText((String) attributes.get("username")))
+        {
             username = (String) attributes.get("username");
         }
 

@@ -7,9 +7,9 @@ import java.util.Collection;
 import java.util.Map;
 
 public class CustomOAuth2AuthenticatedPrincipal implements OAuth2AuthenticatedPrincipal {
-    private String username;
-    private Collection<? extends GrantedAuthority> authorities;
-    private Map<String, Object> attributes;
+    private final String username;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final Map<String, Object> attributes;
 
     public CustomOAuth2AuthenticatedPrincipal(String username, Collection<? extends GrantedAuthority> authorities, Map<String, Object> attributes) {
         this.username = username;
